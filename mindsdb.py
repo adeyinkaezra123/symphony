@@ -67,14 +67,12 @@ class MindsDB:
         authorizes the email and password with MindsDB's host
         """
         try:
-            # self.server = mindsdb_sdk.connect(
-            #     MINDSDB_HOST,
-            #     login=self.email,
-            #     password=self.password,
-            # )
-            self.server = mindsdb_sdk.connect("http://127.0.0.1:47334")
+            self.server = mindsdb_sdk.connect(
+                MINDSDB_HOST,
+                login=self.email,
+                password=self.password,
+            )
             self.file_db = self.server.databases.files
-            print(self.file_db.tables.create)
         except HTTPError:
             raise Exception("Email or password is incorrect. Make sure to enter the right credentials.")
         except ConnectionError as e:
